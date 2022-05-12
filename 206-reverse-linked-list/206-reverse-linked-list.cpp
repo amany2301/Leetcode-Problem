@@ -12,15 +12,18 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         
-        ListNode *NewNode=NULL;
-        while(head!=NULL)
+      ListNode *prev=NULL; //create a node prev and store it with NULL
+        ListNode *curr=head;         //create a new node curr that point towards head
+        
+        while(curr!=NULL)
         {
-            ListNode *next=head->next;
-            head->next=NewNode;
-            NewNode=head;
-            head=next;
-               
+            ListNode *temp=curr->next; // store the value 2 in temp so we don't loose the node after 
+                                        // breaking the node between 1 and 2
+            
+            curr->next=prev; // the next node of 1 is point towards prev or NULL
+            prev=curr; // move prev to curr position prev 
+            curr= temp; // move curr to temp position curr   
         }
-        return NewNode;
+        return prev;
     }
 };
