@@ -20,7 +20,7 @@ public:
         void inorder(TreeNode* root,int& k)
         {
             if(!root) return;
-            
+        
             inorder(root->left,k);
             if(--k==0)
             {
