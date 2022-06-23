@@ -11,22 +11,23 @@
  */
 class Solution {
 public:
-    bool ans;
-    int checkBalance(TreeNode* root){
-        if(!root)
-            return 0;
-        if(!ans) // if Answer is already False then return it.
-            return 0;
-        int leftSubTree = checkBalance(root->left);
-        int rightSubTree = checkBalance(root->right);
-        if(abs(leftSubTree-rightSubTree) > 1){
-            ans = false;
-        }
-        return 1 + max(leftSubTree, rightSubTree);
+    int checkBalance(TreeNode* root)
+    {
+        if(root==NULL)
+            return true;
+        int lh=checkBalance(root->left);
+        int rh=checkBalance(root->right);
+        if(lh==-1 && rh==-1) return -1;
+        if(abs(lh-rh)>1)
+            return -1;
+        return max(lh,rh)+1;
     }
     bool isBalanced(TreeNode* root){
-        ans = true;
+       
         int temp = checkBalance(root);
-        return ans;
+        if(temp==-1)
+            return false;
+        else
+            return true;
     }
 };
